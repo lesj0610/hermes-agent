@@ -2094,7 +2094,7 @@ class TelegramAdapter(BasePlatformAdapter):
         content can disable this guard via ``extra.cjk_rich_guard: false``
         in the Telegram platform config.
         """
-        if not self.config.extra.get("cjk_rich_guard", True):
+        if not self._coerce_bool_extra("cjk_rich_guard", True):
             return False
         return bool(content and self._RICH_CJK_RE.search(content))
 
